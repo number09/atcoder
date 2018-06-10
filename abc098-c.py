@@ -1,3 +1,5 @@
+# TODO:累積和を使った手法
+
 int_n = int(input())
 str_s = input()
 
