@@ -1,5 +1,3 @@
-import re
-
 str_s = input()
 
 if str_s[0] != 'A':
