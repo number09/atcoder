@@ -1,16 +1,10 @@
 n, k = map(int, input().split())
-
 li_input = list(map(int, input().split()))
 
-result = 0
+ruiseki_wa = [0]
+for i in range(1, n + 1):
+    ruiseki_wa.append(ruiseki_wa[i - 1] + li_input[i - 1])
 
-for idx, v in enumerate(li_input, 1):
-    if idx < k:
-        result += v * idx
-    elif (n - idx + 1) < k:
-        result += v * (n - idx + 1)
-    else:
-        result += v * k
+print(sum((ruiseki_wa[k + i] - ruiseki_wa[i] for i in range(n - k + 1))))
 
-print(result)
 
