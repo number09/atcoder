@@ -8,5 +8,5 @@ if int_a > int_b:
 elif int_a < int_b:
     print("Bob")
 else:
-    print("Drow")
+    print("Draw")
 
