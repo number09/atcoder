@@ -12,9 +12,6 @@ for i in range(int_m):
             roads[r] = 1
 
 
-for i in sorted(roads):
-    print(roads[i])
-
-
-
+for i in range(1, int_n + 1):
+    print("0" if i not in roads else roads[i])
 
