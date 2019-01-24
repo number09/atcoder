@@ -1,4 +1,4 @@
-import itertools
+import copy
 
 n, k = map(int, input().split())
 s = input()
@@ -6,6 +6,23 @@ s = input()
 
 def get_diff(str1, str2):
     return len(list(filter(lambda x: x[0] != x[1], [(s1, s2) for s1, s2 in zip(str1, str2)])))
+
+
+def get_zan_diff(str1, str2):
+    rt = [""] * len(str1)
+    wk = list(str2)
+    unmatch = list()
+    for idx, w_s in enumerate(str1):
+        if w_s in wk:
+            wk.remove(w_s)
+            rt[idx] = w_s
+        else:
+            unmatch.append(w_s)
+
+    for st in sorted(unmatch):
+        for idx, wr in enumerate(rt):
+            rt[idx] = st if wr == "" else rt[idx]
+    return {"unmatch":len(unmatch), "text":"".join(rt)}
 
 
 t = list()
@@ -18,29 +35,30 @@ for i in range(n):
     li_wk = sorted(s)
     for w_t in t:
         li_wk.remove(w_t)
-    kouho = li_wk[0]
 
-    kakutei_kouho = "".join(t) + kouho
+    for kouho in li_wk:
 
-    kakutei_kouho_diff = get_diff(kakutei_kouho, s[:len(kakutei_kouho)])
+        kakutei_kouho = "".join(t) + kouho
 
-    # 残った文字での判定
-    li_wk.remove(kouho)
+        kakutei_kouho_diff = get_diff(kakutei_kouho, s[:len(kakutei_kouho)])
 
-    li_zan_pattern = ["".join(z) for z in itertools.permutations(li_wk)]
+        # 残った文字での判定
+        zantext = list(copy.deepcopy(s))
+        for d in ("".join(t) + kouho):
+            zantext.remove(d)
+        zantext = "".join(zantext)
 
-    for zp in li_zan_pattern:
+        w_dic = get_zan_diff(s[len(kakutei_kouho):], zantext)
 
-        if get_diff(zp, s[len(kakutei_kouho):]) <= (k - kakutei_kouho_diff):
+        if w_dic["unmatch"] <= (k - kakutei_kouho_diff):
             t.append(kouho)
-            save = zp
-            if len(li_wk) == 0:
+            save = w_dic["text"]
+            if len(t) == n:
                 print("".join(t))
                 exit(0)
             break
     else:
-        print("".join(t) + save)
-        exit(0)
+        break
 
-print("".join(t))
+print("".join(t) + save)
 
