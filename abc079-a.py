@@ -1,6 +1,18 @@
-int_n = int(input())
+n = input()
 
-if str(int_n).count(str(int_n)[0]) == 4:
-    print("Yes")
+counter = 0
+tmp = ""
+for w in n:
+    if tmp != w:
+        counter = 1
+        tmp = w
+    else:
+        counter += 1
+        if counter >= 3:
+            print("Yes")
+            exit(0)
 else:
     print("No")
+
+
+
