@@ -11,7 +11,7 @@ for r in l_h:
 l_temp.append(list(map(int, "0" * (int_w + 2))))
 
 
-print(l_temp)
+# print(l_temp)
 
 
 for rownum, row in enumerate(l_temp):
