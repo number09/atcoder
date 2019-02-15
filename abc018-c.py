@@ -15,21 +15,41 @@ for t_r in range(r):
             li_check[t_r][t_c] = '0/0'
         else:
             upcount = 0
-            for up in range(t_r, -1, -1):
-                if li_s[up][t_c] != 'x':
+            # r = 0の場合は自分自身の値で判定する
+            # r >=1の場合は、上段(r -1) の値 + 1
+            if t_r == 0:
                     upcount += 1
-                else:
-                    break
+            else:
+                upcount = int(li_check[t_r - 1][t_c].split('/')[0]) + 1
+
+            # for up in range(t_r, -1, -1):
+            #     if li_s[up][t_c] != 'x':
+            #         upcount += 1
+            #     else:
+            #         break
+
             downcount = 0
-            for down in range(t_r, r):
-                if li_s[down][t_c] != 'x':
-                    downcount += 1
-                else:
-                    break
+            # r = 0または 一つ冗談がxの場合、素直にループで判定
+            # 上記以外の場合は、上段(r -1) の値 - 1
+            if t_r == 0 or li_s[t_r - 1][t_c] == 'x':
+                for down in range(t_r, r):
+                    if li_s[down][t_c] != 'x':
+                        downcount += 1
+                    else:
+                        break
+            else:
+                downcount = int(li_check[t_r - 1][t_c].split('/')[1]) - 1
+
+
+            # for down in range(t_r, r):
+            #     if li_s[down][t_c] != 'x':
+            #         downcount += 1
+            #     else:
+            #         break
 
             li_check[t_r][t_c] = str(upcount) + '/' + str(downcount)
 
-
+# print(li_check)
 
 def check_zyoge(in_r, in_c, in_range):
 
