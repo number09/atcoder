@@ -29,7 +29,7 @@ for t_r in range(r):
             #         break
 
             downcount = 0
-            # r = 0または 一つ冗談がxの場合、素直にループで判定
+            # r = 0または 一つ上段がxの場合、素直にループで判定
             # 上記以外の場合は、上段(r -1) の値 - 1
             if t_r == 0 or li_s[t_r - 1][t_c] == 'x':
                 for down in range(t_r, r):
@@ -60,14 +60,18 @@ def check_zyoge(in_r, in_c, in_range):
         return False
 
 
-for tmp_r in range(r):
-    for tmp_c in range(c):
-        #tmp_r,tmp_cを中央座標とした場合、上下左右にkマス以上あるか確認
-        if r - k >= tmp_r >= k - 1 and c - k >= tmp_c >= k - 1:
-            if all(map(lambda x: check_zyoge(tmp_r, x, k - abs(tmp_c - x)), [yoko for yoko in range(tmp_c - k +1, tmp_c + k)])):
-                answer += 1
-        else:
-            pass
+# for tmp_r in range(r):
+#     for tmp_c in range(c):
+#         #tmp_r,tmp_cを中央座標とした場合、上下左右にkマス以上あるか確認
+#         if r - k >= tmp_r >= k - 1 and c - k >= tmp_c >= k - 1:
+#             if all(map(lambda x: check_zyoge(tmp_r, x, k - abs(tmp_c - x)), [yoko for yoko in range(tmp_c - k +1, tmp_c + k)])):
+#                 answer += 1
+#         else:
+#             pass
 
+for tmp_r in range(k - 1, r - k + 1):
+    for tmp_c in range(k - 1, c - k + 1):
+        if all(map(lambda x: check_zyoge(tmp_r, x, k - abs(tmp_c - x)), [yoko for yoko in range(tmp_c - k +1, tmp_c + k)])):
+            answer += 1
 
 print(answer)
