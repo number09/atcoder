@@ -1,11 +1,11 @@
 int_a, int_b, int_k = map(int, input().split())
 
-ar = list(range(int_a, int_b + 1))
-
-minset = set(ar[:int_k])
-maxset = set(ar[int_k * -1:])
+minset = set(range(int_a, int_a + int_k))
+maxset = set(range(int_b - int_k + 1, int_b + 1))
 
 result = list(minset | maxset)
 result.sort()
-print(result)
+for i in result:
+    if int_a <= i <= int_b:
+        print(i)
 
