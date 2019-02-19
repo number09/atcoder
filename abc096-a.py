@@ -1,11 +1,8 @@
 int_a, int_b = map(int, input().split())
 
-count = 0
+if int_a <= int_b:
+    print(int_a)
+else:
+    print(int_a - 1)
 
-for m in range(1,int_a + 1):
-    for d in range(1, int_b + 1):
-        if m == d:
-            count += 1
-
-print(count)
 
