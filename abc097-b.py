@@ -1,18 +1,16 @@
 int_x = int(input())
 
-result_b = 0
-result_p = 0
+result = 0
+for b in range(1, 100):
 
-for b in range(1, int_x + 1):
-
-    for p in range(2, int_x + 1):
+    for p in range(2, 10):
 
         if b ** p <= int_x:
-            result_b, result_p = b, p
+            result = max(result, b ** p)
         else:
             break
 
-print(result_b ** result_p)
+print(result)
 
 
 
