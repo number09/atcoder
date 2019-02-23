@@ -1,11 +1,8 @@
-int_n = int(input())
+d, n = map(int, input().split())
 
-bin_number = format(int_n, 'b')
+print([i * (100 ** d) for i in range(1, 102) if i != 100][n - 1])
 
-bin_sum = sum(list(map(int, list(str(bin_number)))))
 
-if int_n % bin_sum == 0:
-    print("Yes")
-else:
-    print("No")
+
+
 
