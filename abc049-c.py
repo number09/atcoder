@@ -11,11 +11,11 @@ result = True
 while len(str_sr):
     currnt_flg = False
     for r in str_r:
-        print('r:' + r)
+        # print('r:' + r)
         if len(str_sr) >= len(r) and str_sr[:len(r)] == r:
-            print('ok')
+            # print('ok')
             str_sr = str_sr[len(r):]
-            print(str_sr)
+            # print(str_sr)
             current_flg = True
             break
     else:
@@ -25,4 +25,4 @@ while len(str_sr):
 if result:
     print('YES')
 else:
-    print('No')
+    print('NO')
