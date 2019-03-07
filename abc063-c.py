@@ -5,14 +5,14 @@ ar_int_s = list()
 for i in range(int_n):
     ar_int_s.append(int(input()))
 
-minused = list()
 
-for i in range(int_n):
-    if (sum(ar_int_s) - sum(minused)) % 10 != 0:
-        break
+if sum(ar_int_s) % 10 != 0:
+    print(sum(ar_int_s))
+else:
+    li_minus = list(filter(lambda x: x % 10 != 0, ar_int_s))
+    if len(li_minus) == 0:
+        print(0)
     else:
-        minused.append(sorted(ar_int_s)[i:i])
+        print(sum(ar_int_s) - min(li_minus))
 
-print(sum(ar_int_s) - sum(minused))
 
-# 作業中
