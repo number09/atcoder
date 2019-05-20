@@ -1,19 +1,21 @@
+from fractions import gcd
+
+
 n = int(input())
 li_t = list()
 
 for _ in range(n):
     li_t.append(int(input()))
 
-li_sorted = sorted(li_t, reverse=True)
-t_max = li_sorted.pop(0)
+# a * b = 最小公倍数 * 最大公約数
 
 
-sec = 1
-while(True):
-    if all(map(lambda x: (t_max * sec) % x == 0, li_sorted)):
-        print(sec * t_max)
-        exit(0)
-    else:
-        sec += 1
+def lcm(a, b):
+    return (a * b) // gcd(a, b)
 
+work = 1
 
+for t in li_t:
+    work = lcm(work, t)
+
+print(work)
