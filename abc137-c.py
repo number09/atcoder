@@ -1,5 +1,3 @@
-import math
-
 n = int(input())
 di = dict()
 answer = 0
